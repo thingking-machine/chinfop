@@ -34,6 +34,7 @@ self.onmessage = async function (event) {
 			instructions: machineConfig.instructions,
 			max_output_tokens: llmSettings.max_output_tokens || 8192,
 			temperature: llmSettings.temperature || 1.0,
+			store: false,
 			reasoning: {
 				"effort": llmSettings.reasoning_effort || "high",
 				"summary": llmSettings.reasoning_summary || "detailed"
@@ -53,6 +54,7 @@ self.onmessage = async function (event) {
 			method: 'POST',
 			headers: {
 				'Authorization': 'Bearer ' + llmSettings.token,
+				'x-api-key': llmSettings.token,
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(finalApiPayload),
